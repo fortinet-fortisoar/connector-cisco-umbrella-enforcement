@@ -1,0 +1,242 @@
+{
+  "name": "cisco-umbrella-enforcement",
+  "label": "Cisco Umbrella Enforcement",
+  "description": "Cisco Umbrella is a cloud security platform that provides the first line of defense against threats on the internet wherever users go. Cisco Umbrella Enforcement API allows partners and customers who have their own SIEM/Threat Intelligence Platform (TIP) environments to inject events and/or threat intelligence into their Umbrella environment.",
+  "publisher": "Community",
+  "cs_approved": false,
+  "cs_compatible": true,
+  "version": "3.0.0",
+  "category": "Network Security",
+  "icon_small_name": "Cisco-Umbrella_Enforcement_32X32.png",
+  "icon_large_name": "Cisco-Umbrella_Enforcement_80X80.png",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/3.0.0/cisco-umbrella-enforcement/442/cisco-umbrella-enforcement-v3-0-0",
+  "configuration": {
+    "fields": [
+      {
+        "title": "Server URL",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "text",
+        "name": "url",
+        "value": "https://api.umbrella.com",
+        "description": "The service-based URL of the Cisco Umbrella Security Platform using the Enforcement API server to which you connect and perform the automated operations."
+      },
+      {
+        "title": "Client ID",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "text",
+        "name": "client_id",
+        "description": "Unique ID of the Cisco Umbrella Security Platform that is used to create an authentication token required to access the API."
+      },
+      {
+        "title": "Client Secret",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "password",
+        "name": "client_secret",
+        "description": "Unique Client Secret of the Cisco Umbrella Security Platform that is used to create an authentication token required to access the API."
+      },
+      {
+        "title": "Verify SSL",
+        "required": false,
+        "editable": true,
+        "visible": true,
+        "type": "checkbox",
+        "name": "verify_ssl",
+        "value": true,
+        "description": "Specifies whether the SSL certificate for the server is to be verified. By default, this option is set to True."
+      }
+    ]
+  },
+  "operations": [
+    {
+      "title": "Add Destinations to Destination List",
+      "operation": "add_destination",
+      "category": "investigation",
+      "annotation": "add_destination",
+      "description": "Adds destinations to a list in the Cisco Umbrella Security Platform using the Enforcement API based on the destination list ID, destinations, and other input parameters that you have specified.",
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Destination List ID",
+          "name": "listId",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "tooltip": "Specify the ID of the destination list to which the destinations are to be added in the Cisco Umbrella Security Platform using Enforcement API.",
+          "description": "Specify the ID of the destination list to which the destinations are to be added in the Cisco Umbrella Security Platform using Enforcement API."
+        },
+        {
+          "title": "Destinations",
+          "name": "destinations",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "tooltip": "Specify a comma-separated list of destinations that you want to add to the Cisco Umbrella Security Platform using Enforcement API.",
+          "description": "Specify a comma-separated list of destinations that you want to add to the Cisco Umbrella Security Platform using Enforcement API.",
+          "placeholder": "For ex. cisco.com"
+        },
+        {
+          "title": "Comment",
+          "description": "(Optional) Specify a comment regarding the destination that you want to add to the Cisco Umbrella Security Platform using Enforcement API.",
+          "name": "comment",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "(Optional) Specify a comment regarding the destination that you want to add to the Cisco Umbrella Security Platform using Enforcement API."
+        }
+      ],
+      "output_schema": {
+        "id": "",
+        "organizationId": "",
+        "access": "",
+        "isGlobal": "",
+        "name": "",
+        "thirdpartyCategoryId": "",
+        "createdAt": "",
+        "modifiedAt": "",
+        "isMspDefault": "",
+        "markedForDeletion": "",
+        "bundleTypeId": "",
+        "meta": {
+          "destinationCount": ""
+        }
+      }
+    },
+    {
+      "title": "Get All Destination List",
+      "operation": "get_destination_lists",
+      "category": "investigation",
+      "annotation": "get_destination_lists",
+      "description": "Retrieves a list of all destinations from the Cisco Umbrella Security Platform using the Enforcement API. It does not accept any input parameters.",
+      "enabled": true,
+      "parameters": [],
+      "output_schema": [
+        {
+          "id": "",
+          "organizationId": "",
+          "access": "",
+          "isGlobal": "",
+          "name": "",
+          "thirdpartyCategoryId": "",
+          "createdAt": "",
+          "modifiedAt": "",
+          "isMspDefault": "",
+          "markedForDeletion": "",
+          "bundleTypeId": "",
+          "meta": {
+            "destinationCount": "",
+            "domainCount": "",
+            "urlCount": "",
+            "ipv4Count": ""
+          }
+        }
+      ]
+    },
+    {
+      "title": "Get Destinations in Destination List",
+      "operation": "list_destinations",
+      "category": "investigation",
+      "annotation": "list_destinations",
+      "description": "Retrieves a list of all destinations in a destination list from the Cisco Umbrella Security Platform using Enforcement API based on the destination list ID that you have specified.",
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Destination List ID",
+          "name": "listId",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "tooltip": "Specify the ID of the destination list whose destinations you want to list.",
+          "description": "Specify the ID of the destination list whose destinations you want to list."
+        },
+        {
+          "title": "Page Number",
+          "description": "(Optional) Specify the page number from which to retrieve results. Page numbering, by default, starts from page 1.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "integer",
+          "name": "page",
+          "tooltip": "(Optional) Specify the page number from which to retrieve results. Page numbering, by default, starts from page 1.",
+          "value": 1
+        },
+        {
+          "title": "Limit",
+          "description": "(Optional) Specify the number of results, per page, that you want to include in the response of this operation. By default, this is set to 100.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "integer",
+          "name": "limit",
+          "value": 100,
+          "tooltip": "(Optional) Specify the number of results, per page, that you want to include in the response of this operation. By default, this is set to 100."
+        }
+      ],
+      "output_schema": [
+        {
+          "id": "",
+          "destination": "",
+          "type": "",
+          "comment": "",
+          "createdAt": ""
+        }
+      ]
+    },
+    {
+      "title": "Delete Destinations from Destination List",
+      "operation": "delete_destinations_from_list",
+      "category": "investigation",
+      "annotation": "delete_destinations_from_list",
+      "description": "Delete a destination from a destination list in the Cisco Umbrella Security Platform using Enforcement API based on the destination list ID and the destination ID that you have specified.",
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Destination List ID",
+          "name": "listId",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "tooltip": "Specify the ID of the destination list whose destinations you want to remove from the Cisco Umbrella Security Platform using Enforcement API.",
+          "description": "Specify the ID of the destination list whose destinations you want to remove from the Cisco Umbrella Security Platform using Enforcement API."
+        },
+        {
+          "title": "Destinations ID",
+          "name": "id",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "tooltip": "Specify a comma-separated list of destination IDs you want to remove from the Cisco Umbrella Security Platform using Enforcement API.",
+          "description": "Specify a comma-separated list of destination IDs you want to remove from the Cisco Umbrella Security Platform using Enforcement API.",
+          "placeholder": "For ex. 1234567, 1223456"
+        }
+      ],
+      "output_schema": {
+        "id": "",
+        "organizationId": "",
+        "access": "",
+        "isGlobal": "",
+        "name": "",
+        "thirdpartyCategoryId": "",
+        "createdAt": "",
+        "modifiedAt": "",
+        "isMspDefault": "",
+        "markedForDeletion": "",
+        "bundleTypeId": "",
+        "meta": {
+          "destinationCount": ""
+        }
+      }
+    }
+  ]
+}
