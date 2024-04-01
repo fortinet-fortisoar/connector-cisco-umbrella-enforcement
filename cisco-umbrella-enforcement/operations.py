@@ -6,10 +6,15 @@
 
 import requests, json, datetime
 import inspect
+import json
+import re
+import logging
+from requests_toolbelt.utils import dump
 from connectors.core.connector import get_logger, ConnectorError
 from .cisco_api_auth import *
 
 logger = get_logger('cisco_umbrella_enforcement')
+#logger.setLevel(logging.DEBUG) #Uncomment to enable to DEBUG
 
 error_msgs = {400: "Bad request. Server unable to process request.",
               401: "Unauthorized. Make sure that the API key is valid.",
@@ -19,6 +24,21 @@ error_msgs = {400: "Bad request. Server unable to process request.",
               }
 
 
+def _get_input_list(input_list):
+    wrong_input = None
+    if isinstance(input_list, list):
+        return input_list
+    elif isinstance(input_list, str):
+        cleaned_string = re.sub('[^,.a-zA-Z0-9_-]', '', input_list).split(",")
+        if len(cleaned_string) == 0:
+            wrong_input = True
+        return cleaned_string
+    else:
+        wrong_input = True
+
+    if wrong_input:
+        logger.error("Invalid input CSV")
+        raise ConnectorError("Invalid input CSV")
 
 def get_destination_lists(config, params, connector_info):
     destination_lists_url = '{0}/policies/v2/destinationlists'.format(config.get('url'))
@@ -28,10 +48,10 @@ def get_destination_lists(config, params, connector_info):
 def add_destination(config, params, connector_info):
     destination_add_url = '{0}/policies/v2/destinationlists/{1}/destinations'.format(config.get('url'),
                                                                                      params.get('listId'))
-    destinations = params.get('destinations')
     comment = params.get('comment', 'Suspicious destination')
     payload = []
-    for destination in destinations.split().split(','):
+    destinations = _get_input_list(params.get('destinations'))
+    for destination in destinations:
         payload.append({"destination": destination, "comment": comment})
     return make_api_call(config, destination_add_url, method='POST', body=json.dumps(payload),
                          connector_info=connector_info)
@@ -53,10 +73,11 @@ def delete_destinations_from_list(config, params, connector_info):
     destination_delete_url = '{0}/policies/v2/destinationlists/{1}/destinations/remove'.format(config.get('url'),
                                                                                        params.get('listId'))
     payload = []
-    dest_id = params.get('id').split(",")
-    for dest in dest_in:
+    dest_ids = _get_input_list(params.get('id'))
+    for dest in dest_ids:
         payload.append(int(dest))
-    return make_api_call(config, destination_delete_url, method='DELETE', body=payload, connector_info=connector_info)
+    
+    return make_api_call(config, destination_delete_url, method='DELETE', body=json.dumps(payload), connector_info=connector_info)
 
 
 def _error_message_log(message):
@@ -85,7 +106,7 @@ def make_api_call(config, url, method='GET', params=None, body=None, connector_i
         }
         response = requests.request(method=method, url=url, params=params, headers=headers, data=body,
                                     verify=config.get('verify_ssl'))
-
+        logger.debug("\n\{}n".format(dump.dump_all(response).decode('utf-8')))
         if response.status_code == 204:
             return True
         if response.status_code in error_msgs.keys():
