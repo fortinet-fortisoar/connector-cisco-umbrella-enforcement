@@ -3,404 +3,299 @@
   "data": [
     {
       "@type": "WorkflowCollection",
-      "name": "Sample - Cisco Umbrella Enforcement - 3.0.0",
-      "description": "Sample playbooks for \"Cisco Umbrella Enforcement\" connector. If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete.",
+      "name": "Sample - Cisco Umbrella Enforcement - 3.0.1",
+      "description": "Cisco Umbrella is a cloud security platform that provides the first line of defense against threats on the internet wherever users go. Cisco Umbrella Enforcement API allows partners and customers who have their own SIEM/Threat Intelligence Platform (TIP) environments to inject events and/or threat intelligence into their Umbrella environment.",
       "visible": true,
-      "image": null,
-      "uuid": "542a6fc4-d44f-4e48-aa72-2299dc05b23f",
-      "id": 83,
-      "deletedAt": null,
-      "importedBy": [],
-      "recordTags": [],
+      "uuid": "00ec69da-da23-44f9-a49c-d63c8f13832c",
+      "recordTags": [
+        "Cisco",
+        "cisco-umbrella-enforcement"
+      ],
       "workflows": [
         {
           "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Add Destinations to Destination List",
-          "aliasName": null,
-          "tag": "#Cisco #cisco-umbrella-enforcement",
-          "description": "Adds destinations to a list in Cisco Umbrella Security Platform using Enforcement API based on the destination list ID, destinations and other input parameter you have specified.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1668151204,
-          "collection": "/api/3/workflow_collections/542a6fc4-d44f-4e48-aa72-2299dc05b23f",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/0c504d65-cdf5-4c92-a557-b664ceaa3991",
+          "uuid": "5c967872-e619-48d4-8072-a2a4f6def40f",
+          "collection": "/api/3/workflow_collections/00ec69da-da23-44f9-a49c-d63c8f13832c",
           "steps": [
             {
+              "uuid": "dc3a2357-707f-4a1b-93fc-24a14892b580",
               "@type": "WorkflowStep",
               "name": "Add Destinations to Destination List",
               "description": null,
+              "status": null,
               "arguments": {
                 "name": "Cisco Umbrella Enforcement",
-                "config": "",
+                "config": "''",
                 "params": {
-                  "listId": "12345a",
-                  "comment": "",
-                  "destinations": "cisco.com"
+                  "listId": "",
+                  "destinations": "",
+                  "comment": ""
                 },
-                "version": "3.0.0",
+                "version": "3.0.1",
                 "connector": "cisco-umbrella-enforcement",
                 "operation": "add_destination",
-                "operationTitle": "Add Destination to a List",
-                "pickFromTenant": false,
-                "step_variables": []
+                "operationTitle": "Add Destinations to Destination List"
               },
-              "status": null,
-              "top": "165",
-              "left": "125",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "01494826-243e-4f0b-bde2-4d73d01e8610"
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
             },
             {
+              "uuid": "e10fe07d-3e00-46e7-b157-9748c64af040",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
+              "status": null,
               "arguments": {
-                "route": "87ca8db1-d5fb-49cb-962c-37115b60d7f4",
-                "title": "Cisco Umbrella Enforcement: Add Destinations to Destination List",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
                 "step_variables": {
                   "input": {
-                    "params": [],
-                    "records": "{{vars.input.records}}"
+                    "records": "{{vars.input.records[0]}}"
                   }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
+                }
               },
-              "status": null,
-              "top": "30",
-              "left": "125",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "0c504d65-cdf5-4c92-a557-b664ceaa3991"
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
             }
           ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start -> Add Destination to a List",
-              "targetStep": "/api/3/workflow_steps/01494826-243e-4f0b-bde2-4d73d01e8610",
-              "sourceStep": "/api/3/workflow_steps/0c504d65-cdf5-4c92-a557-b664ceaa3991",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "14b9826f-bfe0-48fb-b4df-e60e79aeb0c8"
-            }
-          ],
-          "groups": [],
-          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-          "uuid": "502d9128-7108-468a-b90b-6224cc97827f",
-          "id": 1205,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
+          "triggerLimit": null,
+          "description": "Adds destinations to a list in the Cisco Umbrella Security Platform using the Enforcement API based on the destination list ID, destinations, and other input parameters that you have specified.",
+          "name": "Add Destinations to Destination List",
+          "tag": "#Cisco Umbrella Enforcement",
           "recordTags": [
             "Cisco",
             "cisco-umbrella-enforcement"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/e10fe07d-3e00-46e7-b157-9748c64af040",
+          "routes": [
+            {
+              "uuid": "166a2eac-ef93-4abb-bd35-dc89581f2a25",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Add Destinations to Destination List",
+              "sourceStep": "/api/3/workflow_steps/e10fe07d-3e00-46e7-b157-9748c64af040",
+              "targetStep": "/api/3/workflow_steps/dc3a2357-707f-4a1b-93fc-24a14892b580"
+            }
           ]
         },
         {
           "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get Destinations in Destination List",
-          "aliasName": null,
-          "tag": "#Cisco #cisco-umbrella-enforcement",
-          "description": "Retrieves a list of all destinations in a destination list from Cisco Umbrella Security Platform using Enforcement API based on the destination list ID that you have specified.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1668151163,
-          "collection": "/api/3/workflow_collections/542a6fc4-d44f-4e48-aa72-2299dc05b23f",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/a9b5a012-1edb-4055-810c-c00696402018",
+          "uuid": "ef1b8995-bd19-4122-b131-c14fb5f744d7",
+          "collection": "/api/3/workflow_collections/00ec69da-da23-44f9-a49c-d63c8f13832c",
           "steps": [
             {
-              "@type": "WorkflowStep",
-              "name": "Get Destinations in Destination List",
-              "description": null,
-              "arguments": {
-                "name": "Cisco Umbrella Enforcement",
-                "config": "",
-                "params": {
-                  "page": "",
-                  "limit": "",
-                  "listId": "1234a"
-                },
-                "version": "3.0.0",
-                "connector": "cisco-umbrella-enforcement",
-                "operation": "list_destinations",
-                "operationTitle": "List all destinations in a list",
-                "pickFromTenant": false,
-                "step_variables": []
-              },
-              "status": null,
-              "top": "165",
-              "left": "125",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "0ee693f8-c742-478e-9597-adfd18f36eff"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "a16c214e-caf2-4233-ae89-71ea99731515",
-                "title": "Cisco Umbrella Enforcement: Get Destinations in Destination List",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "params": [],
-                    "records": "{{vars.input.records}}"
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "30",
-              "left": "125",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "a9b5a012-1edb-4055-810c-c00696402018"
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start -> List All Destinations in a List",
-              "targetStep": "/api/3/workflow_steps/0ee693f8-c742-478e-9597-adfd18f36eff",
-              "sourceStep": "/api/3/workflow_steps/a9b5a012-1edb-4055-810c-c00696402018",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "c3f87f63-c00a-44fc-ab92-a289d60b1b9e"
-            }
-          ],
-          "groups": [],
-          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-          "uuid": "cb9377f4-b8dd-42d6-9aac-d85dec221cb3",
-          "id": 1206,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "Cisco",
-            "cisco-umbrella-enforcement"
-          ]
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Delete Destinations from Destination List",
-          "aliasName": null,
-          "tag": "#Cisco #cisco-umbrella-enforcement",
-          "description": "Delete a destination from a destination list in Cisco Umbrella Security Platform using Enforcement API based on the destination list ID and destination ID that you have specified.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1668151086,
-          "collection": "/api/3/workflow_collections/542a6fc4-d44f-4e48-aa72-2299dc05b23f",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/7cb5c6a9-bfe6-4068-9820-ba9e1a8ce400",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "6977ac2a-4261-4b8b-a941-925437d5af43",
-                "title": "Cisco Umbrella Enforcement: Delete Destinations from a list",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "params": [],
-                    "records": "{{vars.input.records}}"
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "30",
-              "left": "125",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "7cb5c6a9-bfe6-4068-9820-ba9e1a8ce400"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Delete Destinations from Destination List",
-              "description": null,
-              "arguments": {
-                "name": "Cisco Umbrella Enforcement",
-                "config": "",
-                "params": {
-                  "id": "123456,1231232",
-                  "listId": "1234a"
-                },
-                "version": "3.0.0",
-                "connector": "cisco-umbrella-enforcement",
-                "operation": "delete_destinations_from_list",
-                "operationTitle": "Delete Destinations from a list",
-                "pickFromTenant": false,
-                "step_variables": []
-              },
-              "status": null,
-              "top": "165",
-              "left": "125",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "8aaf43d2-1871-411d-ac3f-8d39f387c4dd"
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start -> Delete Destination List",
-              "targetStep": "/api/3/workflow_steps/8aaf43d2-1871-411d-ac3f-8d39f387c4dd",
-              "sourceStep": "/api/3/workflow_steps/7cb5c6a9-bfe6-4068-9820-ba9e1a8ce400",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "4204d0c5-a7b8-4a4b-8c2b-07281f21fef3"
-            }
-          ],
-          "groups": [],
-          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-          "uuid": "e27c4a5b-3f6c-4e2a-a755-555c8756b685",
-          "id": 1207,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "Cisco",
-            "cisco-umbrella-enforcement"
-          ]
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get All Destination List",
-          "aliasName": null,
-          "tag": "#Cisco #cisco-umbrella-enforcement",
-          "description": "Get All Destination Lists",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1667802248,
-          "collection": "/api/3/workflow_collections/542a6fc4-d44f-4e48-aa72-2299dc05b23f",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/1bdbed55-eb25-4650-ae8e-8252b042175a",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "ea2ac77d-cd7f-41c0-8825-18194781f77d",
-                "title": "Cisco Umbrella Enforcement: Get All Destination Lists",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "params": [],
-                    "records": "{{vars.input.records}}"
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "30",
-              "left": "125",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "1bdbed55-eb25-4650-ae8e-8252b042175a"
-            },
-            {
+              "uuid": "6c236f35-75c1-4c6c-880a-8b0288551fcb",
               "@type": "WorkflowStep",
               "name": "Get All Destination List",
               "description": null,
+              "status": null,
               "arguments": {
                 "name": "Cisco Umbrella Enforcement",
-                "config": "",
+                "config": "''",
                 "params": [],
-                "version": "3.0.0",
+                "version": "3.0.1",
                 "connector": "cisco-umbrella-enforcement",
                 "operation": "get_destination_lists",
-                "operationTitle": "Get All Destination Lists",
-                "pickFromTenant": false,
-                "step_variables": []
+                "operationTitle": "Get All Destination List"
               },
-              "status": null,
-              "top": "165",
-              "left": "125",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "8e6565a3-608a-47ee-bb97-64d3be3cd762"
-            }
-          ],
-          "routes": [
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            },
             {
-              "@type": "WorkflowRoute",
-              "name": "Start -> Get All Destination List",
-              "targetStep": "/api/3/workflow_steps/8e6565a3-608a-47ee-bb97-64d3be3cd762",
-              "sourceStep": "/api/3/workflow_steps/1bdbed55-eb25-4650-ae8e-8252b042175a",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "60a58401-3288-4c7a-b30f-ac827933a944"
+              "uuid": "543e30cc-c344-4028-8f35-efd065930f66",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
             }
           ],
-          "groups": [],
-          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-          "uuid": "f26e3301-2fec-4c0e-8a3d-f706760f0f28",
-          "id": 1208,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
+          "triggerLimit": null,
+          "description": "Retrieves a list of all destinations from the Cisco Umbrella Security Platform using the Enforcement API. It does not accept any input parameters.",
+          "name": "Get All Destination List",
+          "tag": "#Cisco Umbrella Enforcement",
           "recordTags": [
             "Cisco",
             "cisco-umbrella-enforcement"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/543e30cc-c344-4028-8f35-efd065930f66",
+          "routes": [
+            {
+              "uuid": "9921c7c6-cc36-4a32-9847-1ac22c85d6a9",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get All Destination List",
+              "sourceStep": "/api/3/workflow_steps/543e30cc-c344-4028-8f35-efd065930f66",
+              "targetStep": "/api/3/workflow_steps/6c236f35-75c1-4c6c-880a-8b0288551fcb"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "10c7ffab-3e44-4a0e-84a4-b628fbfc69b4",
+          "collection": "/api/3/workflow_collections/00ec69da-da23-44f9-a49c-d63c8f13832c",
+          "steps": [
+            {
+              "uuid": "920e9cbc-f9da-4147-8ad5-92fa9541f43b",
+              "@type": "WorkflowStep",
+              "name": "Delete Destinations from Destination List",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Cisco Umbrella Enforcement",
+                "config": "''",
+                "params": {
+                  "listId": "",
+                  "id": ""
+                },
+                "version": "3.0.1",
+                "connector": "cisco-umbrella-enforcement",
+                "operation": "delete_destinations_from_list",
+                "operationTitle": "Delete Destinations from Destination List"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            },
+            {
+              "uuid": "471748ff-4e35-457f-bacb-66c8f165ffbd",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Delete a destination from a destination list in the Cisco Umbrella Security Platform using Enforcement API based on the destination list ID and the destination ID that you have specified.",
+          "name": "Delete Destinations from Destination List",
+          "tag": "#Cisco Umbrella Enforcement",
+          "recordTags": [
+            "Cisco",
+            "cisco-umbrella-enforcement"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/471748ff-4e35-457f-bacb-66c8f165ffbd",
+          "routes": [
+            {
+              "uuid": "e3174b7a-76ed-4b01-8d5b-fa7830fb1597",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Delete Destinations from Destination List",
+              "sourceStep": "/api/3/workflow_steps/471748ff-4e35-457f-bacb-66c8f165ffbd",
+              "targetStep": "/api/3/workflow_steps/920e9cbc-f9da-4147-8ad5-92fa9541f43b"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "d8247476-34a4-4f59-8d76-1f007abfe157",
+          "collection": "/api/3/workflow_collections/00ec69da-da23-44f9-a49c-d63c8f13832c",
+          "steps": [
+            {
+              "uuid": "dc0c3483-d50d-4f29-a22f-5f7f5107a505",
+              "@type": "WorkflowStep",
+              "name": "Get Destinations in Destination List",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Cisco Umbrella Enforcement",
+                "config": "''",
+                "params": {
+                  "listId": "",
+                  "page": 1,
+                  "limit": 100
+                },
+                "version": "3.0.1",
+                "connector": "cisco-umbrella-enforcement",
+                "operation": "list_destinations",
+                "operationTitle": "Get Destinations in Destination List"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            },
+            {
+              "uuid": "07c8b7c1-7a1d-4967-8e05-aa2e7607f5a7",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves a list of all destinations in a destination list from the Cisco Umbrella Security Platform using Enforcement API based on the destination list ID that you have specified.",
+          "name": "Get Destinations in Destination List",
+          "tag": "#Cisco Umbrella Enforcement",
+          "recordTags": [
+            "Cisco",
+            "cisco-umbrella-enforcement"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/07c8b7c1-7a1d-4967-8e05-aa2e7607f5a7",
+          "routes": [
+            {
+              "uuid": "2befb327-782a-46c0-bf2b-e1742413414c",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Destinations in Destination List",
+              "sourceStep": "/api/3/workflow_steps/07c8b7c1-7a1d-4967-8e05-aa2e7607f5a7",
+              "targetStep": "/api/3/workflow_steps/dc0c3483-d50d-4f29-a22f-5f7f5107a505"
+            }
           ]
         }
       ]
     }
-  ],
-  "exported_tags": [
-    "Cisco",
-    "cisco-umbrella-enforcement"
   ]
 }

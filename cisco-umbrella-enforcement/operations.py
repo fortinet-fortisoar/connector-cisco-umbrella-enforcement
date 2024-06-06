@@ -1,8 +1,9 @@
-""" Copyright start
-  Copyright (C) 2008 - 2022 Fortinet Inc.
-  All rights reserved.
-  FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
-  Copyright end """
+"""
+Copyright start
+MIT License
+Copyright (c) 2024 Fortinet Inc
+Copyright end
+"""
 
 import requests, json, datetime
 import inspect
@@ -19,19 +20,28 @@ error_msgs = {400: "Bad request. Server unable to process request.",
               }
 
 
-
 def get_destination_lists(config, params, connector_info):
     destination_lists_url = '{0}/policies/v2/destinationlists'.format(config.get('url'))
     return make_api_call(config, destination_lists_url, method='GET', params={}, connector_info=connector_info)
 
 
+def _get_input_list(input_list):
+    if isinstance(input_list, (list, tuple)):
+        return list(input_list)
+    elif isinstance(input_list, str):
+        return [item.strip() for item in input_list.split(',')]
+    else:
+        logger.error("Invalid input CSV: {0}".format(input_list))
+        raise ConnectorError("Invalid input CSV: {0}".format(input_list))
+
+
 def add_destination(config, params, connector_info):
     destination_add_url = '{0}/policies/v2/destinationlists/{1}/destinations'.format(config.get('url'),
                                                                                      params.get('listId'))
-    destinations = params.get('destinations')
-    comment = params.get('comment', 'Suspicious destination')
+    destinations = _get_input_list(params.get('destinations'))
+    comment = params.get('comment') if params.get('comment') else 'Suspicious destination'
     payload = []
-    for destination in destinations.split().split(','):
+    for destination in destinations:
         payload.append({"destination": destination, "comment": comment})
     return make_api_call(config, destination_add_url, method='POST', body=json.dumps(payload),
                          connector_info=connector_info)
@@ -44,19 +54,18 @@ def list_destinations(config, params, connector_info):
     if params.get("page") and params.get("page") != "":
         req_params["page"] = params.get("page")
     if params.get("limit") and params.get("limit") != "":
-            req_params["limit"] = params.get("limit")
+        req_params["limit"] = params.get("limit")
     return make_api_call(config, destination_lists_url, method='GET', params=req_params, connector_info=connector_info)
-
 
 
 def delete_destinations_from_list(config, params, connector_info):
     destination_delete_url = '{0}/policies/v2/destinationlists/{1}/destinations/remove'.format(config.get('url'),
-                                                                                       params.get('listId'))
+                                                                                               params.get('listId'))
     payload = []
-    dest_id = params.get('id').split(",")
-    for dest in dest_in:
+    dest_ids = _get_input_list(params.get('id'))
+    for dest in dest_ids:
         payload.append(int(dest))
-    return make_api_call(config, destination_delete_url, method='DELETE', body=payload, connector_info=connector_info)
+    return make_api_call(config, destination_delete_url, method='DELETE', body=json.dumps(payload), connector_info=connector_info)
 
 
 def _error_message_log(message):
@@ -89,7 +98,7 @@ def make_api_call(config, url, method='GET', params=None, body=None, connector_i
         if response.status_code == 204:
             return True
         if response.status_code in error_msgs.keys():
-            message = "HTTP {0}:{1}".format(response.status_code, error_msgs.get(response.status_code, "Unkown Error"))
+            message = "HTTP {0}:{1}".format(response.status_code, error_msgs.get(response.status_code, "Unknown Error"))
             logger.error(message)
             raise ConnectorError(message)
 
@@ -105,12 +114,12 @@ def make_api_call(config, url, method='GET', params=None, body=None, connector_i
                 return _error_message_log(message='JSON response could not be decoded.')
     except requests.exceptions.SSLError:
         return _error_message_log(message='An SSL error occurred.')
+    except requests.exceptions.ConnectTimeout:
+        return _error_message_log(message='Connection Timeout.')
     except requests.exceptions.ConnectionError:
         return _error_message_log(message='A connection error occurred.')
     except requests.exceptions.RequestException:
         return _error_message_log(message='There was an error while handling the request.')
-    except requests.exceptions.ConnectTimeout:
-        return _error_message_log(message='Connection Timeout.')
     except Exception as err:
         return _error_message_log(message=format(str(err)))
 
