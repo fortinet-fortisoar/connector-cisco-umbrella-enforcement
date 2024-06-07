@@ -2,14 +2,14 @@
   "name": "cisco-umbrella-enforcement",
   "label": "Cisco Umbrella Enforcement",
   "description": "Cisco Umbrella is a cloud security platform that provides the first line of defense against threats on the internet wherever users go. Cisco Umbrella Enforcement API allows partners and customers who have their own SIEM/Threat Intelligence Platform (TIP) environments to inject events and/or threat intelligence into their Umbrella environment.",
-  "publisher": "Community",
+  "publisher": "Fortinet",
   "cs_approved": false,
   "cs_compatible": true,
   "version": "3.0.1",
   "category": "Network Security",
   "icon_small_name": "Cisco-Umbrella_Enforcement_32X32.png",
   "icon_large_name": "Cisco-Umbrella_Enforcement_80X80.png",
-  "help_online": "",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/3.0.1/cisco-umbrella-enforcement/873/cisco-umbrella-enforcement-v3-0-1",
   "configuration": {
     "fields": [
       {
