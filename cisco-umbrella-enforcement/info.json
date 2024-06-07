@@ -9,7 +9,7 @@
   "category": "Network Security",
   "icon_small_name": "Cisco-Umbrella_Enforcement_32X32.png",
   "icon_large_name": "Cisco-Umbrella_Enforcement_80X80.png",
-  "help_online": "",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/3.0.1/cisco-umbrella-enforcement/873/cisco-umbrella-enforcement-v3-0-1",
   "configuration": {
     "fields": [
       {
